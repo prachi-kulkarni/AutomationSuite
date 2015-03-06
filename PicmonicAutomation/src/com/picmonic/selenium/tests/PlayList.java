@@ -49,26 +49,35 @@ public class PlayList {
 
 	}
 
+	@Ignore
 	@Test
 	public void testClearPlaylist() throws Exception {
-		
+
+		driver.findElement(By.id("header-playlist-button")).click();
+		driver.findElement(By.id("current-set")).click();
+		driver.findElement(By.id("create-set-item")).click();
+		driver.findElement(By.id("set_name")).clear();
+		driver.findElement(By.id("set_name")).sendKeys("ashish");
+		driver.findElement(By.id("save_playlist")).click();
+
+		// TODO: add picmonics to playlist
+
+		addPicmonics(3);
+		Thread.sleep(1000);
+		driver.findElement(By.cssSelector("i.icon-cog")).click();
+		driver.findElement(By.linkText("Clear Playlist")).click();
+		driver.findElement(By.xpath("//div[@id='playlist_clear_confirm']//button[@class='btn btn-primary']")).click();
+		// driver.get(baseUrl + "/login");
 		driver.findElement(By.xpath("//button//i[@class='icon-bars']")).click();
 
-		driver.findElement(By.xpath("//a[@href='/library']/div[@class='nav-item']")).click();
-		driver.findElement(By.xpath("//a[@class='stack-add'][1]")).click();
-		Thread.sleep(1000);
-	    driver.findElement(By.cssSelector("i.icon-cog")).click();
-	    driver.findElement(By.linkText("Clear Playlist")).click();
-	   // driver.findElement(By.xpath("//div[@id='playlist_clear_confirm']//button[@class='btn btn-primary']")).click();
-	    driver.findElement(By.xpath("//button//i[@class='icon-bars']")).click();		
 	}
 
 	@Test
 	public void testCreatePlaylistWithBlankField() throws Exception {
-		driver.findElement(By.xpath("//a[@href='/library']/div[@class='nav-item']")).click();
+		driver.findElement(By.id("header-playlist-button")).click();
 		// create playlist
 		driver.findElement(By.id("playlist-dropdown-button")).click();
-			
+
 		driver.findElement(By.id("create-set-item")).click();
 		Thread.sleep(1000);
 		driver.findElement(
@@ -82,8 +91,8 @@ public class PlayList {
 
 		driver.findElement(By.xpath("//a[@href='/library']/div[@class='nav-item']")).click();
 		driver.findElement(By.cssSelector("i.icon-cog")).click();
-		
 		// create playlist
+
 		driver.findElement(By.id("playlist-dropdown-button")).click();
 		driver.findElement(By.id("create-set-item")).click();
 		driver.findElement(By.id("set_name")).clear();
@@ -109,35 +118,49 @@ public class PlayList {
 
 	}
 
+	@Ignore
 	@Test
 	public void testDuplicatePlaylist() throws Exception {
-		driver.findElement(By.xpath("//button//i[@class='icon-bars']")).click();
-		driver.findElement(By.xpath("//a[@href='/library']/div[@class='nav-item']")).click();
-		driver.findElement(By.xpath("//a[@class='stack-add'][1]")).click();			
+
+		driver.findElement(By.id("header-playlist-button")).click();
+		driver.findElement(By.id("current-set")).click();
+		driver.findElement(By.id("create-set-item")).click();
+		driver.findElement(By.id("set_name")).clear();
+		driver.findElement(By.id("set_name")).sendKeys("ashish");
+		driver.findElement(By.id("save_playlist")).click();
+
+		// TODO: Add picmonic only after that clone can be created
 
 		// Duplicate playlist
 		driver.findElement(By.cssSelector("i.icon-cog")).click();
 		driver.findElement(By.id("duplicate-set")).click();
-		
+		// driver.get(baseUrl + "/login");
+		driver.findElement(By.xpath("//button//i[@class='icon-bars']")).click();
+
 	}
 
+	@Ignore
 	@Test
 	public void testLearnItNow() throws Exception {
-		driver.findElement(By.xpath("//button//i[@class='icon-bars']")).click();
+
 		driver.findElement(By.xpath("//a[@href='/library']/div[@class='nav-item']")).click();
-		driver.findElement(By.xpath("//a[@class='stack-add'][1]")).click();	
+		driver.findElement(By.cssSelector("i.icon-plus-circle")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.cssSelector("i.icon-cog")).click();
 		driver.findElement(By.id("learn-it-now")).click();
-	
+		// driver.get(baseUrl + "/login");
+		driver.findElement(By.xpath("//button//i[@class='icon-bars']")).click();
+
 	}
 
+	@Ignore
 	@Test
 	public void testLearnPlaylist() throws Exception {
-		driver.findElement(By.xpath("//button//i[@class='icon-bars']")).click();
+
 		driver.findElement(By.xpath("//a[@href='/library']/div[@class='nav-item']")).click();
 		driver.findElement(By.xpath("//a[@id='subnav-add-all']/span")).click();
 		driver.findElement(By.id("create-set")).click();
+		// driver.get(baseUrl + "/login");
 		driver.findElement(By.xpath("//button//i[@class='icon-bars']")).click();
 
 	}
@@ -151,11 +174,8 @@ public class PlayList {
 		} catch (Error e) {
 			verificationErrors.append(e.toString());
 		}
-		driver.findElement(By.xpath("//a[@href='/library']/div[@class='nav-item']")).click();
-		driver.findElement(By.cssSelector("i.icon-cog")).click();
-		// create playlist
-
-		driver.findElement(By.id("playlist-dropdown-button")).click();
+		driver.findElement(By.id("header-playlist-button")).click();
+		driver.findElement(By.id("current-set")).click();
 		driver.findElement(By.id("create-set-item")).click();
 		driver.findElement(By.id("set_name")).clear();
 		driver.findElement(By.id("set_name")).sendKeys("ashish");
@@ -174,11 +194,7 @@ public class PlayList {
 
 	@Test
 	public void testRenamePlaylist() throws Exception {
-		//driver.findElement(By.id("header-playlist-button")).click();
-		driver.findElement(By.xpath("//button//i[@class='icon-bars']")).click();
-		driver.findElement(By.xpath("//a[@href='/library']/div[@class='nav-item']")).click();
-		driver.findElement(By.xpath("//a[@class='stack-add'][1]")).click();	
-		
+		driver.findElement(By.id("header-playlist-button")).click();
 		driver.findElement(By.cssSelector("i.icon-cog")).click();
 		driver.findElement(By.id("rename-set")).click();
 		driver.findElement(By.id("set_name")).clear();
@@ -206,11 +222,8 @@ public class PlayList {
 	}
 
 	private void addPicmonics(int count) {
-		driver.findElement(By.xpath("//button//i[@class='icon-bars']")).click();
+		driver.findElement(By.id("header-playlist-button")).click();
 
-		driver.findElement(By.xpath("//a[@href='/library']/div[@class='nav-item']")).click();
-		driver.findElement(By.xpath("//a[@id='subnav-add-all']/span")).click();
-		
 		// create playlist
 		driver.findElement(By.id("playlist-dropdown-button")).click();
 
