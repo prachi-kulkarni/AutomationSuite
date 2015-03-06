@@ -143,8 +143,8 @@ public class Menu {
 	public void testIdeasInMenu() throws Exception {
 
 		driver.findElement(By.xpath("//button//i[@class='icon-bars']")).click();
-		driver.findElement(
-				By.xpath("//a[@href='http://feedback.picmonic.com/forums/239315-picmonic-v2?sso=']/span[@class='nav-item']"))
+		driver.findElement(				
+				By.xpath("//a[contains(@href, 'http://feedback.picmonic.com')]/span[@class='nav-item']"))
 				.click();
 
 		driver.get("http://feedback.picmonic.com/forums/239315-picmonic-v2");
